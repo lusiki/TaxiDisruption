@@ -249,7 +249,7 @@ my_stop_words <- tibble(
     "baš", "dakle", "osim", "svih", 
     "svoju", "odnosno", "gdje",
     "kojoj", "ovi", "toga",
-     "ubera", "vozača", "hrvatskoj", "usluge", "godine", "više", "taksi", "taxi", "taksija", "taksija", "kaže", "rekao"
+     "ubera", "vozača", "hrvatskoj", "usluge", "godine", "više", "taksi", "taxi", "taksija", "taksija", "kaže", "rekao", "ae", "vozaeu"
   ),
   lexicon = "lux"
 )
@@ -517,18 +517,20 @@ layout: true
 
 rijeci_korelacija <- c("konkurencija", "nelegalno", "dozvola", "zakon","zarada", "profit", "sigurnost")
 
+izbaci <- c("ae")
 
 # korelacije
 
 korpus_words %>%
   select(idClanka, word, sukob) %>%
+#  filter(word !=c("ae","vozaeu")) %>%
   pairwise_count(word, idClanka, sort = TRUE) -> korpus_word_pairs
 
 # vrijeme
 
 korpus_word_pairs %>%
   filter(item2 %in% rijeci_korelacija) %>% 
-  group_by(item2) %>%
+  group_by(item2) %>% 
   slice(1:5) %>%
   ungroup()  %>%
   mutate(item1 = recode(item1,
@@ -561,7 +563,7 @@ korpus_word_pairs %>%
                          "uber" = "Uber",
                         "vozila"  = "Vehicles",
                         "zakona" = "Law",
-                        "dozvola"  = "licence" ,
+                        "dozvola"  = "Taxi licence" ,
                         "konkurencija" = "Competition",
                         "nelegalno" = "Illegal" )) %>%
   mutate(item2 = reorder(item2, n)) %>%
@@ -682,7 +684,7 @@ korpus_words %>%
                          "uber" = "Uber",
                         "vozila"  = "Vehicles",
                         "zakona" = "Law",
-                        "dozvola"  = "Licence" ,
+                        "dozvola"  = "Taxi licence" ,
                         "konkurencija" = "Competition",
                         "nelegalno" = "Illegal",
                         "zarada" = "Profit")) %>%
