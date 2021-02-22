@@ -18,7 +18,7 @@ output:
     number_sections: true
     toc: no
   bookdown::word_document2: null 
-bibliography: "./Literatura/reference.bib"
+bibliography: "../Bibliography/reference.bib"
 fontsize: 12pt
 link-citations: yes
 ---
@@ -61,7 +61,7 @@ library(httr)
 ```{r import_Crosentilex, echo=FALSE,  message = FALSE, warning = FALSE}
 
 
-CroSentilex_n <- read.delim("./Podatci/crosentilex-negatives.txt",
+CroSentilex_n <- read.delim("../Podatci/crosentilex-negatives.txt",
                                    header = FALSE,
                                    sep = " ",
                                    stringsAsFactors = FALSE,
@@ -69,7 +69,7 @@ CroSentilex_n <- read.delim("./Podatci/crosentilex-negatives.txt",
                    rename(word = "V1", sentiment = "V2" ) %>%
                    mutate(brija = "NEG")
  
- CroSentilex_p  <- read.delim("./Podatci/crosentilex-positives.txt",
+ CroSentilex_p  <- read.delim("../Podatci/crosentilex-positives.txt",
                                    header = FALSE,
                                    sep = " ",
                                    stringsAsFactors = FALSE,
@@ -80,7 +80,7 @@ CroSentilex_n <- read.delim("./Podatci/crosentilex-negatives.txt",
  Crosentilex_sve <- rbind(setDT(CroSentilex_n), setDT(CroSentilex_p))
  
  
- CroSentilex_Gold  <- read.delim2("./Podatci/gs-sentiment-annotations.txt",
+ CroSentilex_Gold  <- read.delim2("../Podatci/gs-sentiment-annotations.txt",
                                  header = FALSE,
                                  sep = " ",
                                  stringsAsFactors = FALSE) %>%

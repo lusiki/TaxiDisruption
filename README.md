@@ -27,8 +27,9 @@ The initial sample embraced all the newspaper articles on the taxi industry publ
 The main data analysis consisted of qualitative part i.e. thematic analysis conducted with Atlas.ti software and quantitative part i.e. keywords analysis and sentiment analysis conducted with R software.
 <br>
 The keywords analysis confirmed Uber being the main disruptor of the national taxi industry and revealed an increased stakeholders' joint focus on the regulatory framework issues. The qualitative analysis identified the following themes: a) Uber, b) The conflict among the stakeholders, c) Traditional taxy industry's response to the conflict, d) The state's response to the conflict, e) The Uber's response to the other stakeholders' stance on the topic, and f) Uber and traditional taxi industry's response to the features of new regulatory framework. The keywords analysis conducted within each of the categories showed e.g., types of response to the conflict used at Uber Croatia and among the traditional taxi drivers. Finally, the sentiment analysis reported a predominantly positive sentiment towards both Uber and the events in the market throughout the entire period.  
-
-
+<br>
+<br>
 Keywords: Uber, Croatia, disruption
-
+<br>
+<br>
 The preliminary presentation of results can be found on the [link]().
