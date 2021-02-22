@@ -31,4 +31,4 @@ The keywords analysis confirmed Uber being the main disruptor of the national ta
 Keywords: Uber, Croatia, disruption
 <br>
 <br>
-The preliminary presentation of results can be found on the [link](https://raw.githack.com/lusiki/TaxiDisruption/main/Analysis/TaxiUberPT.html).
+The preliminary presentation of results can be found on the <a href="https://raw.githack.com/lusiki/TaxiDisruption/main/Analysis/TaxiUberPT.html">following link</a> 
