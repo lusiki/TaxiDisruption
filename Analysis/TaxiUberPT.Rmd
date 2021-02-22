@@ -382,7 +382,9 @@ layout: true
 
 ---
 
+<br>
 ### Unigrams
+<br>
 
 ```{r unigram_Words, echo=FALSE,  message = FALSE, warning = FALSE}
 
@@ -422,7 +424,7 @@ corpus %>%
 
 kable(corpus) %>% # , caption = "Table X: Most frequent words (>100)"
   kable_styling() %>%
-  scroll_box(width = "500px", height = "300px")
+  scroll_box(width = "700px", height = "350px")
 
 
 ```
@@ -433,10 +435,10 @@ layout: true
 # INSIGHTS AND TOPIC IDENTIFICATION
 
 ---
-
+<br>
 ### Bigrams
-
-
+<br>
+<br>
 ```{r bigram_Words, echo=FALSE,  message = FALSE, warning = FALSE}
 
 
@@ -540,7 +542,7 @@ korpus_word_pairs %>%
                         "prijevoz" = "transport",
                         "zagrebu" = "zagreb",
                         "prometa" = "traffic" ,
-                        "vozači" = "drivers",
+                        "vozaea" = "drivers",
                         "uberu" = "uber" ,
                         "usluga" = "service",
                         "mora" = "must",
@@ -553,15 +555,15 @@ korpus_word_pairs %>%
                         "prijevozu" = "traffic",
                         "tržište" = "market")) %>%
   mutate(item2 = recode(item2,
-                        'zarada' = "income",
-                         'sigurnost' = "safety",
-                         'zakon' = "law",
-                         "uber" = "uber",
-                        "vozila"  = "vehicles",
-                        "zakona" = "law",
+                        'zarada' = "Income",
+                         'sigurnost' = "Safety",
+                         'zakon' = "Law",
+                         "uber" = "Uber",
+                        "vozila"  = "Vehicles",
+                        "zakona" = "Law",
                         "dozvola"  = "licence" ,
-                        "konkurencija" = "competition",
-                        "nelegalno" = "illegal" )) %>%
+                        "konkurencija" = "Competition",
+                        "nelegalno" = "Illegal" )) %>%
   mutate(item2 = reorder(item2, n)) %>%
   ggplot(aes(item1, n)) +
   geom_bar(stat = "identity") +
@@ -675,20 +677,22 @@ korpus_words %>%
   mutate(gn = sum(n)) %>% 
   filter(word %in% rijeci_korelacija) %>%
   mutate(word = recode(word,
-                         'sigurnost' = "safety",
-                         'zakon' = "law",
-                         "uber" = "uber",
-                        "vozila"  = "vehicles",
-                        "zakona" = "law",
-                        "dozvola"  = "licence" ,
-                        "konkurencija" = "competition",
-                        "nelegalno" = "illegal",
-                        "zarada" = "profit")) %>%
+                         'sigurnost' = "Safety",
+                         'zakon' = "Law",
+                         "uber" = "Uber",
+                        "vozila"  = "Vehicles",
+                        "zakona" = "Law",
+                        "dozvola"  = "Licence" ,
+                        "konkurencija" = "Competition",
+                        "nelegalno" = "Illegal",
+                        "zarada" = "Profit")) %>%
   ggplot(., aes(Datum, n / gn)) + 
   geom_point() +
   geom_smooth() +
   facet_wrap(~ word, scales = "free_y") +
   scale_y_continuous(labels = scales::percent_format()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  #scale_x_date(labels = date_format("%Y %m")) +
   labs(title="",
         x ="Date", y = "% of total words(quarterly)")
 
@@ -829,7 +833,7 @@ sukob_word_pairs %>%
                         "prijevoz" = "transport",
                         "zagrebu" = "zagreb",
                         "prometa" = "traffic" ,
-                        "vozači" = "drivers",
+                        "vozaea" = "drivers",
                         "uberu" = "uber" ,
                         "usluga" = "service",
                         "mora" = "must",
@@ -844,10 +848,10 @@ sukob_word_pairs %>%
                         "imaju" = "have",
                         "infrastrukture" = "infrastructure")) %>%
   mutate(item2 = recode(item2,
-                         'napad' = "attack",
-                         'prijedlog' = "suggestion",
-                         "prijetnje" = "threats",
-                        "prosvjed"  = "demonstrations" )) %>%
+                         'napad' = "Attack",
+                         'prijedlog' = "Suggestion",
+                         "prijetnje" = "Threats",
+                        "prosvjed"  = "Demonstrations" )) %>%
   mutate(item2 = reorder(item2, n)) %>%
   ggplot(aes(item1, n)) +
   geom_bar(stat = "identity") +
@@ -879,15 +883,16 @@ sukob_words %>%
   mutate(gn = sum(n)) %>% 
   filter(word %in% sukob_rijeci) %>%
   mutate(word = recode(word,
-                         'napad' = "attack",
-                         'prijetnje' = "threats",
-                         "prijedlog" = "suggestion",
-                        "prosvjed"  = "demonstrations")) %>%
+                         'napad' = "Attack",
+                         'prijetnje' = "Threats",
+                         "prijedlog" = "Suggestion",
+                        "prosvjed"  = "Demonstrations")) %>%
   ggplot(., aes(Datum, n / gn)) + 
   geom_point() +
   geom_smooth() +
   facet_wrap(~ word, scales = "free_y") +
-  scale_y_continuous(labels = scales::percent_format())+
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(title="",
         x ="Date", y = "% of total words(quarterly)")
 
@@ -937,9 +942,7 @@ layout: true
 
 ---
 
-### Most important words by topic
-
-```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=8}
+```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=7}
 
 
 sukob_words %>%
@@ -1026,6 +1029,7 @@ idf_sukob %>%
                         "automobilu"  = "car" )) %>%
     ggplot(.,aes(reorder(word,tf_idf), tf_idf, fill = sukob)) +
     geom_col(show.legend = FALSE) +
+    theme(axis.text.y = element_text(angle = 30, hjust = 1, size = 8)) +
     facet_wrap(~sukob, ncol = 2, scales = "free") +
     coord_flip() +
     labs(title="",
@@ -1085,7 +1089,7 @@ sm %>%
   summarise(Tjedni_sent = sum(score, na.rm = TRUE)) %>%
   ggplot(., aes(Datum, Tjedni_sent)) +
   geom_bar(stat = "identity")+
-  labs(title="Graph X: Sentiment through time (quarterly)",
+  labs(title="",
         x ="Date", y = "Sentiment Score") -> gg_sentiment_kroz_vrijeme_qv
 
 
