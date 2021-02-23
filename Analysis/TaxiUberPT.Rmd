@@ -2,8 +2,8 @@
 title: "THE MEDIA'S PERSPECTIVE OF UBER'S DISRUPTION OF TAXI INDUSTRY IN CROATIA"
 # subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
 subtitle: "Sharing Cultures: 7th International Workshop on the Sharing Economy"
-author: "Filip Majetic and Luka Sikic, Zagreb, Croatia"
-date: "[Institute for Social Sciences Ivo Pilar](https://www.pilar.hr/)" #"`r format(Sys.time(), '%d %B %Y')`"
+author: "Filip Majetic and Luka Sikic"
+date: "[Institute for Social Sciences Ivo Pilar, Zagreb, Croatia](https://www.pilar.hr/)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -689,6 +689,10 @@ sukob_words %>%
 
 options(scipen = 1000000)
 idf_sukob %>%
+    mutate(sukob = case_when(sukob == "trad" ~ "c",
+                                 sukob == "repo" ~ "d",
+                                 sukob == "kont" ~ "e",
+                                 sukob == "kont2" ~ "f")) %>% 
     mutate(word = factor(word, levels = rev(unique(word)))) %>% 
     group_by(sukob) %>% 
     select(sukob, word, tf_idf) %>%
