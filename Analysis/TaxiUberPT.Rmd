@@ -3,7 +3,7 @@ title: "THE MEDIA'S PERSPECTIVE OF UBER'S DISRUPTION OF TAXI INDUSTRY IN CROATIA
 # subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
 subtitle: "Sharing Cultures: 7th International Workshop on the Sharing Economy, Barcelona "
 author: "Filip Majetic and Luka Sikic"
-date: "Institute for Social Sciences Ivo Pilar | [Repository link](https://github.com/lusiki/TaxiDisruption)" #"`r format(Sys.time(), '%d %B %Y')`"
+date: "Institute for Social Sciences Ivo Pilar" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -319,21 +319,6 @@ korpus_words <- taxi %>%
   filter(!is.na(word))
 
 ```
-
-
-
-
-## INTRODUCTION
-
----
-layout: true
-# INTRODUCTION
----
-<br>
-<br>
-<br>
-
--Official repository can be accessed on the [link](https://github.com/lusiki/TaxiDisruption).
 
 
 ---
