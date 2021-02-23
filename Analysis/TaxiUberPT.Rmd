@@ -337,22 +337,29 @@ layout: true
 - The disruption of the national taxi industry in late 2015 
 <br>
 <br>
+
 --
+
 - Conflict between the traditional taxi drivers and market newcomers
 <br>
 <br>
+
 --
+
 - The conflict was “resolved” in early 2018
 <br>
 <br>
+
 --
+
 - New regulatory framework and full liberalization the taxi market 
 <br>
 <br>
 <br>
-<br>
-<br>
-**How did the media present the disruption and conflict?**
+
+--
+
+>**How did the media present the disruption and conflict?**
 
 
 ---
@@ -367,17 +374,17 @@ layout: true
 <br>
 <br>
 <br>
-**The data collection:**
+**Data collection:**
 Web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper.
 <br>
 <br>
 --
-**The analyzed period:** 
+**Analyzed period:** 
 mid-October 2015 (*Uber entering the market*) - mid-April 2018 (*introduction of the new Law on Road Transportation*)
 <br>
 <br>
 --
-**The sample:**
+**Empirical ample:**
 167.600 articles in total
 370 taxi industry related news
 The final sample consisted of **165** articles containing **34.845** words
@@ -398,10 +405,13 @@ layout: true
 ---
 <br>
 <br>
-.pull_left[**Qualitative part** – thematic analysis conducted with Atlas.ti software] 
 <br>
 <br>
-.pull_right[**Quantitative part** – keywords analysis and sentiment analysis conducted with R software]
+**Qualitative part** – thematic analysis conducted with Atlas.ti software 
+<br>
+<br>
+--
+**Quantitative part** – keywords analysis and sentiment analysis conducted with R software
 <br>
 <br>
 
@@ -417,10 +427,8 @@ layout: true
 # RESULTS
 
 ---
-<br>
-The keywords analysis confirmed Uber being the main disruptor of the national taxi industry
 
-### Unigrams
+#### **Unigrams:** Uber as the main disruptor of the national taxi industry
 <br>
 
 ```{r unigram_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
@@ -520,6 +528,7 @@ korpus_word_pairs %>%
                         "smatraju" = "consider",
                         "protiv" = "against",
                         "kažu" = "claim",
+                        "cestovnom" = "road traffic",
                         "prijevozu" = "traffic",
                         "tržište" = "market")) %>%
   mutate(item2 = recode(item2,
@@ -539,7 +548,7 @@ korpus_word_pairs %>%
   facet_wrap(~ item2, scales = "free") +
   coord_flip() +
   labs(title="",
-        x ="Word", y = "Number of words")
+        x ="Word", y = "Number of words") + theme_economist()
 
 ```
 
@@ -631,7 +640,7 @@ bigrams_filtered %>%
 
 ---
 layout: true
-# RESULTTS
+# RESULTS
 
 ---
 <br>
@@ -762,7 +771,8 @@ idf_sukob %>%
     facet_wrap(~sukob, ncol = 2, scales = "free") +
     coord_flip() +
     labs(title="",
-        x ="Word", y = "TF-IDF statistic") -> gg_idf_1
+        x ="Word", y = "TF-IDF statistic") +
+   theme_economist()-> gg_idf_1
 
 gg_idf_1
 
@@ -807,52 +817,55 @@ korpus_rijeci <- c("zakon", "nelegalno", "politika", "ministar","turizam", "sigu
 
 
 
-sukob_word_pairs %>%
-  filter(item2 %in% sukob_rijeci) %>% 
-  group_by(item2) %>%
-  slice(1:8) %>%
-  ungroup() %>%
-  slice(c(-2,-4,-6,-11,-19,-24,-28)) %>%
-  mutate(item1 = recode(item1,
-                        'prijevoza' = "transport",
-                        'taksisti' = "taxi drivers",
-                        "uber" = "uber",
-                        "taksista" = "taxi drivers",
-                        "vozila"  = "vehicles",
-                        "zakona" = "law"  ,
-                        "kuna"  = "kuna" ,
-                        "prijevoz" = "transport",
-                        "zagrebu" = "zagreb",
-                        "prometa" = "traffic" ,
-                        "vozaea" = "drivers",
-                        "uberu" = "uber" ,
-                        "usluga" = "service",
-                        "mora" = "must",
-                        "može" = "can",
-                        "prijevoza" = "traffic",
-                        "uberu" = "uber",
-                        "smatraju" = "consider",
-                        "protiv" = "against",
-                        "kažu" = "claim",
-                        "prijevozu" = "traffic",
-                        "tržište" = "market",
-                        "imaju" = "have",
-                        "grada" = "city",
-                        "hrvatske" = "Croatia",
-                        "mogu" = "possibility",
-                        "infrastrukture" = "infrastructure")) %>%
-  mutate(item2 = recode(item2,
-                        'napad' = "Attack",
-                        'prijedlog' = "Suggestion",
-                        "prijetnje" = "Threats",
-                        "prosvjed"  = "Demonstrations" )) %>%
-  mutate(item2 = reorder(item2, n)) %>%
-  ggplot(aes(item1, n)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~ item2, scales = "free") +
-  coord_flip() +
-  labs(title="",
-       x ="Word", y = "Number of words") 
+# sukob_word_pairs %>%
+#   filter(item2 %in% sukob_rijeci) %>% 
+#   group_by(item2) %>%
+#   slice(1:8) %>%
+#   ungroup() %>%
+#   slice(c(-2,-4,-6,-11,-19,-24,-28)) %>%
+#   mutate(item1 = recode(item1,
+#                         'prijevoza' = "transport",
+#                         'taksisti' = "taxi drivers",
+#                         "uber" = "uber",
+#                         "taksista" = "taxi drivers",
+#                         "vozila"  = "vehicles",
+#                         "zakona" = "law"  ,
+#                         "kuna"  = "kuna" ,
+#                         "prijevoz" = "transport",
+#                         "zagrebu" = "zagreb",
+#                         "prometa" = "traffic" ,
+#                         "vozaea" = "drivers",
+#                         "uberu" = "uber" ,
+#                         "usluga" = "service",
+#                         "mora" = "enforce",
+#                         "može" = "can",
+#                         "prijevoza" = "traffic",
+#                         "uberu" = "uber",
+#                         "smatraju" = "consider",
+#                         "protiv" = "against",
+#                         "kažu" = "claim",
+#                         "prijevozu" = "traffic",
+#                         "tržište" = "market",
+#                         "imaju" = "possesion",
+#                         "grada" = "city",
+#                         "hrvatske" = "Croatia",
+#                         "mogu" = "possibility",
+#                         "promet" = "traffic",
+#                         
+#                         "infrastrukture" = "infrastructure")) %>%
+#   mutate(item2 = recode(item2,
+#                         'napad' = "Attack",
+#                         'prijedlog' = "Suggestion",
+#                         "prijetnje" = "Threats",
+#                         "prosvjed"  = "Demonstrations" )) %>%
+#   mutate(item2 = reorder(item2, n)) %>%
+#   ggplot(aes(item1, n)) +
+#   geom_bar(stat = "identity") +
+#   theme_economist() +
+#   facet_wrap(~ item2, scales = "free") +
+#   coord_flip() +
+#   labs(title="",
+#        x ="Word", y = "Number of words") 
 
 ```
 
@@ -879,7 +892,8 @@ sukob_words %>%
   scale_y_continuous(labels = scales::percent_format()) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(title="",
-        x ="Date", y = "% of total words(quarterly)")
+        x ="Date", y = "% of total words(quarterly)") +
+  theme_economist()
 
 ```
 
@@ -926,7 +940,8 @@ sm %>%
   ggplot(., aes(Datum, Tjedni_sent)) +
   geom_bar(stat = "identity")+
   labs(title="",
-        x ="Date", y = "Sentiment Score") -> gg_sentiment_kroz_vrijeme_qv
+        x ="Date", y = "Sentiment Score") + 
+  theme_economist()-> gg_sentiment_kroz_vrijeme_qv
 
 
 #grid.arrange(gg_sentiment_kroz_vrijeme_qv, nrow = 2 )
@@ -945,7 +960,7 @@ sukobCorpus <- izracunaj_sentiment(sukob_words)
 
 sukobCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for conflict text corpus")
 ```
-
+---
 layout: true
 # RESULTTS
 
@@ -965,14 +980,13 @@ uberCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for Uber text
 
 
 
-
 ---
 
 layout:false
 class: middle, inverse
 # Thank you for your attention! 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
-(Ovdje se može još nekaj dodati!?)
+
 
 
 
