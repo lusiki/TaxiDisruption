@@ -407,11 +407,10 @@ layout: true
 
 ---
 
-<br>
 ### Unigrams
 <br>
 
-```{r unigram_Words, echo=FALSE,  message = FALSE, warning = FALSE}
+```{r unigram_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
 
 korpus_words %>% 
   count(word) %>%
@@ -671,7 +670,7 @@ layout: true
 <br>
 ## Corpus conflict (unigrams)
 <br>
-```{r unigram_Words_conflict,  echo=FALSE}
+```{r unigram_Words_conflict,  echo=FALSE, fig.height=7}
 
 #uber_words %>% 
 # count(word) %>%
@@ -700,7 +699,8 @@ sukob_words %>%
                        'taksista' = "taxi drivers")) %>%
   distinct(.,Word,.keep_all = T) %>%
   rename( N = n, Ratio = ratio) %>%
-  select(Word,N,Ratio)-> sukob_corpus
+  select(Word,N,Ratio) %>%
+  slice(-1)-> sukob_corpus
 
 
 
@@ -751,8 +751,9 @@ korpus_rijeci <- c("zakon", "nelegalno", "politika", "ministar","turizam", "sigu
 sukob_word_pairs %>%
   filter(item2 %in% sukob_rijeci) %>% 
   group_by(item2) %>%
-  slice(1:4) %>%
+  slice(1:8) %>%
   ungroup() %>%
+  slice(c(-2,-4,-6,-11,-19,-24,-28)) %>%
   mutate(item1 = recode(item1,
                          'prijevoza' = "transport",
                          'taksisti' = "taxi drivers",
@@ -777,6 +778,9 @@ sukob_word_pairs %>%
                         "prijevozu" = "traffic",
                         "tržište" = "market",
                         "imaju" = "have",
+                        "grada" = "city",
+                        "hrvatske" = "Croatia",
+                        "mogu" = "possibility",
                         "infrastrukture" = "infrastructure")) %>%
   mutate(item2 = recode(item2,
                          'napad' = "Attack",
