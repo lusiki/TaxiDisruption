@@ -1,8 +1,8 @@
 ---
 title: "THE MEDIA'S PERSPECTIVE OF UBER'S DISRUPTION OF TAXI INDUSTRY IN CROATIA"
 # subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
-subtitle: "Sharing Cultures: 7th International Workshop on the Sharing Economy, Barcelona "
-author: "Filip Majetic and Luka Sikic"
+subtitle: "Sharing Cultures: 7th International Workshop on the Sharing Economy"
+author: "Filip Majetic and Luka Sikic, Zagreb, Croatia"
 date: "[Institute for Social Sciences Ivo Pilar](https://www.pilar.hr/)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
@@ -347,7 +347,7 @@ layout: true
 
 --
 
-- New regulatory framework and liberalization of the taxi market 
+- New regulatory framework 
 <br>
 <br>
 <br>
@@ -384,7 +384,7 @@ layout: true
 <br>
 
 - 167.600 articles in total
-- 370 taxi industry related news
+- 370 articles related to taxi industry 
 - the final sample consisted of **165** articles containing **34.845** words
 
 <br>
@@ -398,18 +398,22 @@ layout: true
 <br>
 <br>
 <br>
+
 **Qualitative part** 
 
 – thematic analysis conducted with Atlas.ti software 
+
 <br>
 <br>
 <br>
 <br>
 
 --
+
 **Quantitative part**
 
 – keywords analysis and sentiment analysis conducted with R software
+
 <br>
 <br>
 
@@ -481,7 +485,7 @@ layout: true
 
 #### **The most correlated words with:**
 
-```{r corrs_corpus, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5}
+```{r corrs_corpus, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
 
 
 rijeci_korelacija <- c("konkurencija", "nelegalno", "dozvola", "zakon","zarada", "profit", "sigurnost")
@@ -636,13 +640,8 @@ bigrams_filtered %>%
 
 
 ---
-layout: false
-class: middle, inverse
-
-# Key topics
----
 layout: true
-# Key topics
+# Key themes
 
 ---
 <br>
@@ -665,11 +664,11 @@ d) the state's response to the conflict
 <br>
 <br>
 --
-e) the Uber's response to the other stakeholders' stance on the topic
+e) Uber's response to the other stakeholders' stance on the topic
 <br>
 <br>
 --
-f) both Uber and traditional taxi industry's response to the features of new regulatory framework
+f) both Uber and traditional taxi industry's response to features of the new regulatory framework
 
 
 ---
@@ -678,7 +677,8 @@ layout: true
 
 ---
 
-#### Corpus conflict
+#### **(Corpus conflict)**
+
 --
 
 ```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=6}
@@ -784,7 +784,9 @@ layout: true
 # RESULTS
 
 ---
-#### Corpus conflict
+
+#### **(Corpus conflict)**
+
 --
 
 ```{r parwiseCount_conflict, echo=FALSE, results = FALSE,  message = FALSE, warning = FALSE, fig.height=6}
@@ -901,7 +903,7 @@ layout: true
 # RESULTS
 
 ---
-#### Corpus conflict
+#### **(Corpus conflict)**
 --
 
 ```{r sentiment, echo=FALSE,   message = FALSE, warning = FALSE, fig.height=5 }
@@ -963,7 +965,7 @@ layout: true
 # RESULTS
 
 ---
-#### Corpus Uber
+#### **(Corpus Uber)**
 
 --
 ```{r, echo=FALSE,  message = FALSE, warning = FALSE , fig.height=5 }
