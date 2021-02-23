@@ -321,14 +321,13 @@ korpus_words <- taxi %>%
 ```
 
 
-
 layout: false
 class: middle, inverse
 
-# THE RESEARCH RATIONALE
+# RESEARCH RATIONALE
 ---
 layout: true
-# THE RESEARCH RATIONALE
+# RESEARCH RATIONALE
 ---
 <br>
 <br>
@@ -361,7 +360,6 @@ layout: true
 
 >**How did the media present the disruption and conflict?**
 
-
 ---
 layout: false
 class: middle, inverse
@@ -374,20 +372,25 @@ layout: true
 <br>
 <br>
 <br>
-**Data collection:**
-Web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper.
+**Data collection**
+<br>
+web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper
 <br>
 <br>
 --
 **Analyzed period:** 
+<br>
 mid-October 2015 (*Uber entering the market*) - mid-April 2018 (*introduction of the new Law on Road Transportation*)
 <br>
 <br>
 --
-**Empirical ample:**
+**Sample:**
+<br>
 167.600 articles in total
+<br>
 370 taxi industry related news
-The final sample consisted of **165** articles containing **34.845** words
+<br>
+the final sample consisted of **165** articles containing **34.845** words
 
 <br>
 .footnote[*Initial content analysis discarded PR / sponsored articles and taxi industry news unrelated with the national market (e.g., Uber's market share in the UK)]
@@ -396,11 +399,11 @@ The final sample consisted of **165** articles containing **34.845** words
 layout: false
 class: middle, inverse
 
-# THE DATA ANALYSIS
+# DATA ANALYSIS
 ---
 
 layout: true
-# THE DATA ANALYSIS
+# DATA ANALYSIS
 
 ---
 <br>
@@ -415,7 +418,6 @@ layout: true
 <br>
 <br>
 
-
 ---
 layout: false
 class: middle, inverse
@@ -424,11 +426,12 @@ class: middle, inverse
 ---
 
 layout: true
-# RESULTS
+# RESULTS 1/3
 
 ---
 
-#### **Unigrams:** Uber as the main disruptor of the national taxi industry
+#### **Unigrams**
+*(Uber as the main disruptor of the national taxi industry)*
 <br>
 
 ```{r unigram_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
@@ -478,12 +481,12 @@ kable(corpus) %>% # , caption = "Table X: Most frequent words (>100)"
 
 ---
 layout: true
-# RESULTS
+# RESULTS 1/3
 
 ---
 
-### The most correlated words (*with:*)
-
+#### **The most orrelated words with:**
+*(Uber as the main disruptor of the national taxi industry)*
 
 ```{r corrs_corpus, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
 
@@ -640,7 +643,7 @@ bigrams_filtered %>%
 
 ---
 layout: true
-# RESULTS
+# RESULTS 2/3
 
 ---
 <br>
@@ -674,11 +677,10 @@ f) both Uber and traditional taxi industry's response to the features of new reg
 
 ---
 layout: true
-# RESULTTS
+# RESULTS 3/3
 
 ---
-
-### Conflict 1/3
+.footnote[* *Corpus conflict*]
 
 ```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=6}
 
@@ -778,15 +780,12 @@ gg_idf_1
 
 ```
 
-
 ---
 layout: true
-# RESULTTS
+# RESULTS 3/3
 
 ---
-
-### Conflict 2/3
-
+.footnote[* *Corpus conflict*]
   
 ```{r parwiseCount_conflict, echo=FALSE, results = FALSE,  message = FALSE, warning = FALSE, fig.height=6}
 
@@ -897,14 +896,12 @@ sukob_words %>%
 
 ```
 
-
 ---
 layout: true
-# RESULTTS
+# RESULTS 3/3
 
 ---
 ### Conflict 3/3
-
 
 ```{r sentiment, echo=FALSE,   message = FALSE, warning = FALSE, fig.height=5 }
 
@@ -962,13 +959,11 @@ sukobCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for conflict
 ```
 ---
 layout: true
-# RESULTTS
+# RESULTS 3/3
 
 ---
 
-### Uber
-
-
+.footnote[* *Corpus Uber*]
 
 ```{r, echo=FALSE,  message = FALSE, warning = FALSE , fig.height=5 }
 
@@ -977,8 +972,6 @@ uberCorpus <- izracunaj_sentiment(uber_words)
 uberCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for Uber text corpus")
 
 ```
-
-
 
 ---
 
