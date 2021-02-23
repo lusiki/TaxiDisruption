@@ -397,22 +397,21 @@ layout: true
 ---
 <br>
 <br>
-<br>
 
-**Qualitative part** 
 
-– thematic analysis conducted with Atlas.ti software 
+#### **Qualitative part** 
 
-<br>
-<br>
+- thematic analysis conducted with Atlas.ti software 
+
+
 <br>
 <br>
 
 --
 
-**Quantitative part**
+#### **Quantitative part**
 
-– keywords analysis and sentiment analysis conducted with R software
+- keywords analysis and sentiment analysis conducted with R software
 
 <br>
 <br>
@@ -521,11 +520,11 @@ korpus_word_pairs %>%
                         "vozaea" = "drivers",
                         "uberu" = "uber" ,
                         "usluga" = "service",
-                        "mora" = "must",
-                        "može" = "can",
+                        "mora" = "obliged",
+                        "može" = "possibility",
                         "prijevoza" = "traffic",
                         "uberu" = "uber",
-                        "smatraju" = "consider",
+                        "smatraju" = "claim",
                         "protiv" = "against",
                         "kažu" = "claim",
                         "cestovnom" = "road traffic",
@@ -871,7 +870,7 @@ korpus_rijeci <- c("zakon", "nelegalno", "politika", "ministar","turizam", "sigu
 ```
 
 
-```{r time_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5   } 
+```{r time_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6   } 
 
 
 
@@ -906,7 +905,7 @@ layout: true
 #### **(Corpus conflict)**
 --
 
-```{r sentiment, echo=FALSE,   message = FALSE, warning = FALSE, fig.height=5 }
+```{r sentiment, echo=FALSE,   message = FALSE, warning = FALSE, fig.height=6 }
 
 ##SENTIMENT_FUNKCIJA
 
@@ -955,7 +954,7 @@ fullCorpus <- izracunaj_sentiment(korpus_words)
 
 ```
 
-```{r , echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5 }
+```{r ,echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6 }
 sukobCorpus <- izracunaj_sentiment(sukob_words)
 
 sukobCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for conflict text corpus")
@@ -968,7 +967,7 @@ layout: true
 #### **(Corpus Uber)**
 
 --
-```{r, echo=FALSE,  message = FALSE, warning = FALSE , fig.height=5 }
+```{r, echo=FALSE,  message = FALSE, warning = FALSE , fig.height=6 }
 
 uberCorpus <- izracunaj_sentiment(uber_words)
 
