@@ -3,7 +3,7 @@ title: "THE MEDIA'S PERSPECTIVE OF UBER'S DISRUPTION OF TAXI INDUSTRY IN CROATIA
 # subtitle: "<html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
 subtitle: "Sharing Cultures: 7th International Workshop on the Sharing Economy, Barcelona "
 author: "Filip Majetic and Luka Sikic"
-date: "Institute for Social Sciences Ivo Pilar" #"`r format(Sys.time(), '%d %B %Y')`"
+date: "[Institute for Social Sciences Ivo Pilar](https://www.pilar.hr/)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts] 
@@ -321,7 +321,7 @@ korpus_words <- taxi %>%
 ```
 
 
----
+
 layout: false
 class: middle, inverse
 
@@ -337,12 +337,15 @@ layout: true
 - The disruption of the national taxi industry in late 2015 
 <br>
 <br>
+--
 - Conflict between the traditional taxi drivers and market newcomers
 <br>
 <br>
+--
 - The conflict was “resolved” in early 2018
 <br>
 <br>
+--
 - New regulatory framework and full liberalization the taxi market 
 <br>
 <br>
@@ -368,10 +371,12 @@ layout: true
 Web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper.
 <br>
 <br>
+--
 **The analyzed period:** 
 mid-October 2015 (*Uber entering the market*) - mid-April 2018 (*introduction of the new Law on Road Transportation*)
 <br>
 <br>
+--
 **The sample:**
 167.600 articles in total
 370 taxi industry related news
@@ -384,13 +389,36 @@ The final sample consisted of **165** articles containing **34.845** words
 layout: false
 class: middle, inverse
 
-# INSIGHTS AND TOPIC IDENTIFICATION
+# THE DATA ANALYSIS
 ---
 
 layout: true
-# INSIGHTS AND TOPIC IDENTIFICATION
+# THE DATA ANALYSIS
 
 ---
+<br>
+<br>
+.pull_left[**Qualitative part** – thematic analysis conducted with Atlas.ti software] 
+<br>
+<br>
+.pull_right[**Quantitative part** – keywords analysis and sentiment analysis conducted with R software]
+<br>
+<br>
+
+
+---
+layout: false
+class: middle, inverse
+
+# RESULTS
+---
+
+layout: true
+# RESULTS
+
+---
+<br>
+The keywords analysis confirmed Uber being the main disruptor of the national taxi industry
 
 ### Unigrams
 <br>
@@ -442,7 +470,7 @@ kable(corpus) %>% # , caption = "Table X: Most frequent words (>100)"
 
 ---
 layout: true
-# INSIGHTS AND TOPIC IDENTIFICATION
+# RESULTS
 
 ---
 
@@ -503,7 +531,8 @@ korpus_word_pairs %>%
                         "zakona" = "Law",
                         "dozvola"  = "Taxi licence" ,
                         "konkurencija" = "Competition",
-                        "nelegalno" = "Illegal" )) %>%
+                        "nelegalno" = "Illegal",
+                        "cestovnom" = "road transport")) %>%
   mutate(item2 = reorder(item2, n)) %>%
   ggplot(aes(item1, n)) +
   geom_bar(stat = "identity") +
@@ -602,267 +631,47 @@ bigrams_filtered %>%
 
 ---
 layout: true
-# INSIGHTS AND TOPIC IDENTIFICATION
+# RESULTTS
 
----
-
-### Time dynamics of most common words (*full corpus*)
-
-```{r time_corpus , echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
-
-korpus_words %>%
-  mutate(Datum = floor_date(dejt, "quarter")) %>% 
-  group_by(Datum) %>%
-  count(word) %>% 
-  mutate(gn = sum(n)) %>% 
-  filter(word %in% rijeci_korelacija) %>%
-  mutate(word = recode(word,
-                         'sigurnost' = "Safety",
-                         'zakon' = "Law",
-                         "uber" = "Uber",
-                        "vozila"  = "Vehicles",
-                        "zakona" = "Law",
-                        "dozvola"  = "Taxi licence" ,
-                        "konkurencija" = "Competition",
-                        "nelegalno" = "Illegal",
-                        "zarada" = "Profit")) %>%
-  ggplot(., aes(Datum, n / gn)) + 
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~ word, scales = "free_y") +
-  scale_y_continuous(labels = scales::percent_format()) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  #scale_x_date(labels = date_format("%Y %m")) +
-  labs(title="",
-        x ="Date", y = "% of total words(quarterly)")
-
-
-
-```
-
-
-
----
-layout: false
-class: middle, inverse
-
-# RESULTS AND DISCUSSION
----
-
-layout: true
-# RESULTS AND DISCUSSION
 ---
 <br>
-## Corpus conflict (unigrams)
 <br>
-```{r unigram_Words_conflict,  echo=FALSE, fig.height=7}
-
-#uber_words %>% 
-# count(word) %>%
-#  arrange(desc(n)) %>%
-#  top_n(30) -> uber_corpus
-
-#kable(uber_corpus,
-#                        caption = "Najčešće riječi u UBER korpusu") %>%
-#  kable_styling() %>%
-#  scroll_box(width = "500px", height = "300px")
-
-
-sukob_words %>% 
-  count(word) %>%
-  arrange(desc(n)) %>%
-  mutate(ratio = (n / sum(n))*100) %>%
-  mutate(ratio = round(ratio,2)) %>%
-  mutate(ratio = paste0(ratio,"%")) %>%
-  filter(n > 100) %>%
-  mutate(Word = recode(word,
-                         'sigurnost' = "safety",
-                         'zakona' = "law",
-                         "uber" = "uber",
-                        "vozila"  = "vehicles",
-                       'taksisti' = "taxi drivers",
-                       'taksista' = "taxi drivers")) %>%
-  distinct(.,Word,.keep_all = T) %>%
-  rename( N = n, Ratio = ratio) %>%
-  select(Word,N,Ratio) %>%
-  slice(-1)-> sukob_corpus
+**The qualitative analysis identified the following themes:** 
+<br>
+<br>
+--
+a) Uber
+<br>
+<br>
+--
+b) the conflict among the stakeholders
+<br>
+<br>
+--
+c) traditional taxy industry's response to the conflict
+<br>
+<br>
+--
+d) the state's response to the conflict
+<br>
+<br>
+--
+e) the Uber's response to the other stakeholders' stance on the topic
+<br>
+<br>
+--
+f) both Uber and traditional taxi industry's response to the features of new regulatory framework
 
 
-
-kable(sukob_corpus) %>% # ,caption = "Table X: Most frequent words (>100)"
-  kable_styling() 
-
-```
-
--
-
----
-
-layout: true
-# RESULTS AND DISCUSSION
----
-
-### Most correlated words (*with selected important words from corpus "conflict"*)
-
-```{r parwiseCount_conflict, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=6}
-
-###PARWISE COUNT###
-
-# prikazuju se samo tri riječi prve
-
-sukob_words %>%
-  select(idClanka, word, sukob) %>%
-  pairwise_count(word, idClanka, sort = TRUE) -> sukob_word_pairs
-
-
-# sukob_words %>%
-#  select(sukob, word) %>%
-#  mutate(sukob = case_when(sukob == "trad" ~ 1,
-#            sukob == "kont" ~ 2,
-#            sukob == "kont2" ~3,
-#            sukob == "repo" ~ 4)) %>%
-#  mutate(sukob = as.integer(sukob)) %>% #str()
-#  pairwise_count(word, sukob, sort = TRUE) -> sukob_word_pairs_sukob
-
-
-sukob_rijeci <- c("prijedlog", "prosvjed", "prijetnje", "napad" ) # šteta
-uber_rijeci <- c("posao", "zarada", "koristi", "cijena", "plaćanje")
-korpus_rijeci <- c("zakon", "nelegalno", "politika", "ministar","turizam", "sigurnost")
-
-##PARWISE COUNT SA IZABRANIM RIJEČIMA##
-
-
-
-sukob_word_pairs %>%
-  filter(item2 %in% sukob_rijeci) %>% 
-  group_by(item2) %>%
-  slice(1:8) %>%
-  ungroup() %>%
-  slice(c(-2,-4,-6,-11,-19,-24,-28)) %>%
-  mutate(item1 = recode(item1,
-                         'prijevoza' = "transport",
-                         'taksisti' = "taxi drivers",
-                         "uber" = "uber",
-                         "taksista" = "taxi drivers",
-                        "vozila"  = "vehicles",
-                        "zakona" = "law"  ,
-                        "kuna"  = "kuna" ,
-                        "prijevoz" = "transport",
-                        "zagrebu" = "zagreb",
-                        "prometa" = "traffic" ,
-                        "vozaea" = "drivers",
-                        "uberu" = "uber" ,
-                        "usluga" = "service",
-                        "mora" = "must",
-                        "može" = "can",
-                        "prijevoza" = "traffic",
-                        "uberu" = "uber",
-                        "smatraju" = "consider",
-                        "protiv" = "against",
-                        "kažu" = "claim",
-                        "prijevozu" = "traffic",
-                        "tržište" = "market",
-                        "imaju" = "have",
-                        "grada" = "city",
-                        "hrvatske" = "Croatia",
-                        "mogu" = "possibility",
-                        "infrastrukture" = "infrastructure")) %>%
-  mutate(item2 = recode(item2,
-                         'napad' = "Attack",
-                         'prijedlog' = "Suggestion",
-                         "prijetnje" = "Threats",
-                        "prosvjed"  = "Demonstrations" )) %>%
-  mutate(item2 = reorder(item2, n)) %>%
-  ggplot(aes(item1, n)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~ item2, scales = "free") +
-  coord_flip() +
-  labs(title="",
-        x ="Word", y = "Number of words") 
-
-```
-
-
----
-
-layout: true
-# RESULTS AND DISCUSSION
----
-
-
-### Most important terms through time (*quarterly;corpus conflict*). 
-
-```{r time_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5   } 
-
-
-
-sukob_words %>%
-  mutate(Datum = floor_date(dejt, "quarter")) %>% 
-  group_by(Datum) %>%
-  count(word) %>% 
-  mutate(gn = sum(n)) %>% 
-  filter(word %in% sukob_rijeci) %>%
-  mutate(word = recode(word,
-                         'napad' = "Attack",
-                         'prijetnje' = "Threats",
-                         "prijedlog" = "Suggestion",
-                        "prosvjed"  = "Demonstrations")) %>%
-  ggplot(., aes(Datum, n / gn)) + 
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~ word, scales = "free_y") +
-  scale_y_continuous(labels = scales::percent_format()) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title="",
-        x ="Date", y = "% of total words(quarterly)")
-
-```
-
-
-```{r, eval=FALSE, echo=FALSE,  message = FALSE, warning = FALSE }
-uber_words %>%
-  mutate(Datum = floor_date(dejt, "quarter")) %>% 
-  group_by(Datum) %>%
-  count(word) %>% 
-  mutate(gn = sum(n)) %>% 
-  filter(word %in% uber_rijeci) %>%
-  ggplot(., aes(Datum, n / gn)) + 
-  geom_point() +
-  ggtitle("Korpus Uber") +
-  geom_smooth() +
-  facet_wrap(~ word, scales = "free_y") +
-  scale_y_continuous(labels = scales::percent_format())
-
-
-korpus_words %>%
-  mutate(Datum = floor_date(dejt, "quarter")) %>% 
-  group_by(Datum) %>%
-  count(word) %>% 
-  mutate(gn = sum(n)) %>% 
-  filter(word %in% korpus_rijeci) %>%
-  ggplot(., aes(Datum, n / gn)) + 
-  geom_point() +
-  ggtitle("Korpus") +
-  geom_smooth() +
-  facet_wrap(~ word, scales = "free_y") +
-  scale_y_continuous(labels = scales::percent_format())
-
-
-```
-
-
----
-layout: false
-class: middle, inverse
-
-# TOPIC ANALYSIS
 ---
 layout: true
-# TOPIC ANALYSIS
+# RESULTTS
 
 ---
 
-```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=7}
+### Conflict 1/3
+
+```{r IDF,echo=FALSE,  message=FALSE, warning=FALSE, fig.height=6}
 
 
 sukob_words %>%
@@ -961,22 +770,129 @@ gg_idf_1
 
 
 ---
-layout: false
-class: middle, inverse
+layout: true
+# RESULTTS
 
-# SENTIMENT ANALYSIS
+---
+
+### Conflict 2/3
+
+  
+```{r parwiseCount_conflict, echo=FALSE, results = FALSE,  message = FALSE, warning = FALSE, fig.height=6}
+
+###PARWISE COUNT###
+
+# prikazuju se samo tri riječi prve
+
+sukob_words %>%
+  select(idClanka, word, sukob) %>%
+  pairwise_count(word, idClanka, sort = TRUE) -> sukob_word_pairs
+
+
+# sukob_words %>%
+#  select(sukob, word) %>%
+#  mutate(sukob = case_when(sukob == "trad" ~ 1,
+#            sukob == "kont" ~ 2,
+#            sukob == "kont2" ~3,
+#            sukob == "repo" ~ 4)) %>%
+#  mutate(sukob = as.integer(sukob)) %>% #str()
+#  pairwise_count(word, sukob, sort = TRUE) -> sukob_word_pairs_sukob
+
+
+sukob_rijeci <- c("prijedlog", "prosvjed", "prijetnje", "napad" ) # šteta
+uber_rijeci <- c("posao", "zarada", "koristi", "cijena", "plaćanje")
+korpus_rijeci <- c("zakon", "nelegalno", "politika", "ministar","turizam", "sigurnost")
+
+##PARWISE COUNT SA IZABRANIM RIJEČIMA##
+
+
+
+sukob_word_pairs %>%
+  filter(item2 %in% sukob_rijeci) %>% 
+  group_by(item2) %>%
+  slice(1:8) %>%
+  ungroup() %>%
+  slice(c(-2,-4,-6,-11,-19,-24,-28)) %>%
+  mutate(item1 = recode(item1,
+                        'prijevoza' = "transport",
+                        'taksisti' = "taxi drivers",
+                        "uber" = "uber",
+                        "taksista" = "taxi drivers",
+                        "vozila"  = "vehicles",
+                        "zakona" = "law"  ,
+                        "kuna"  = "kuna" ,
+                        "prijevoz" = "transport",
+                        "zagrebu" = "zagreb",
+                        "prometa" = "traffic" ,
+                        "vozaea" = "drivers",
+                        "uberu" = "uber" ,
+                        "usluga" = "service",
+                        "mora" = "must",
+                        "može" = "can",
+                        "prijevoza" = "traffic",
+                        "uberu" = "uber",
+                        "smatraju" = "consider",
+                        "protiv" = "against",
+                        "kažu" = "claim",
+                        "prijevozu" = "traffic",
+                        "tržište" = "market",
+                        "imaju" = "have",
+                        "grada" = "city",
+                        "hrvatske" = "Croatia",
+                        "mogu" = "possibility",
+                        "infrastrukture" = "infrastructure")) %>%
+  mutate(item2 = recode(item2,
+                        'napad' = "Attack",
+                        'prijedlog' = "Suggestion",
+                        "prijetnje" = "Threats",
+                        "prosvjed"  = "Demonstrations" )) %>%
+  mutate(item2 = reorder(item2, n)) %>%
+  ggplot(aes(item1, n)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ item2, scales = "free") +
+  coord_flip() +
+  labs(title="",
+       x ="Word", y = "Number of words") 
+
+```
+
+
+```{r time_Words, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5   } 
+
+
+
+sukob_words %>%
+  mutate(Datum = floor_date(dejt, "quarter")) %>% 
+  group_by(Datum) %>%
+  count(word) %>% 
+  mutate(gn = sum(n)) %>% 
+  filter(word %in% sukob_rijeci) %>%
+  mutate(word = recode(word,
+                         'napad' = "Attack",
+                         'prijetnje' = "Threats",
+                         "prijedlog" = "Suggestion",
+                        "prosvjed"  = "Demonstrations")) %>%
+  ggplot(., aes(Datum, n / gn)) + 
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ word, scales = "free_y") +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title="",
+        x ="Date", y = "% of total words(quarterly)")
+
+```
+
+
 ---
 layout: true
-# SENTIMENT ANALYSIS
+# RESULTTS
 
 ---
+### Conflict 3/3
 
 
-<br>
-## Full text corpus
-<br>
-
-```{r sentiment, echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5 }
+```{r sentiment, echo=FALSE,   message = FALSE, warning = FALSE, fig.height=5 }
 
 ##SENTIMENT_FUNKCIJA
 
@@ -1020,19 +936,24 @@ sm %>%
 
 fullCorpus <- izracunaj_sentiment(korpus_words)
 
-fullCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for full text corpus")
+# fullCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for full text corpus")
 
 ```
 
----
+```{r , echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5 }
+sukobCorpus <- izracunaj_sentiment(sukob_words)
+
+sukobCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for conflict text corpus")
+```
+
 layout: true
-# SENTIMENT ANALYSIS
+# RESULTTS
 
 ---
 
-<br>
-## Uber text corpus
-<br>
+### Uber
+
+
 
 ```{r, echo=FALSE,  message = FALSE, warning = FALSE , fig.height=5 }
 
@@ -1043,23 +964,6 @@ uberCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for Uber text
 ```
 
 
----
-layout: true
-# SENTIMENT ANALYSIS
-
----
-
-<br>
-## Conflict text corpus
-<br>
-
-
-```{r , echo=FALSE,  message = FALSE, warning = FALSE, fig.height=5 }
-sukobCorpus <- izracunaj_sentiment(sukob_words)
-
-sukobCorpus #+ ggtitle("Graph X: Sentiment through time (quarterly) for conflict text corpus")
-```
-
 
 
 ---
@@ -1069,6 +973,15 @@ class: middle, inverse
 # Thank you for your attention! 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>
 (Ovdje se može još nekaj dodati!?)
+
+
+
+
+
+
+
+
+
 
 
 
