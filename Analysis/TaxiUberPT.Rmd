@@ -690,9 +690,9 @@ sukob_words %>%
 options(scipen = 1000000)
 idf_sukob %>%
     mutate(sukob = case_when(sukob == "trad" ~ "c",
-                                 sukob == "repo" ~ "d",
-                                 sukob == "kont" ~ "e",
-                                 sukob == "kont2" ~ "f")) %>% 
+                             sukob == "repo" ~ "d",
+                             sukob == "kont" ~ "e",
+                             sukob == "kont2" ~ "f")) %>% 
     mutate(word = factor(word, levels = rev(unique(word)))) %>% 
     group_by(sukob) %>% 
     select(sukob, word, tf_idf) %>%
