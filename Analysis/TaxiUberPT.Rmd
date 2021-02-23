@@ -340,35 +340,60 @@ layout: true
 layout: false
 class: middle, inverse
 
-# RESEARCH CONTEXT
+# THE RESEARCH RATIONALE
 ---
 layout: true
-# RESEARCH CONTEXT
+# THE RESEARCH RATIONALE
 ---
 <br>
 <br>
 <br>
 
-Here we explain what this is all about.
-
-
+- The disruption of the national taxi industry in late 2015 
+<br>
+<br>
+- Conflict between the traditional taxi drivers and market newcomers
+<br>
+<br>
+- The conflict was “resolved” in early 2018
+<br>
+<br>
+- New regulatory framework and full liberalization the taxi market 
+<br>
+<br>
+<br>
+<br>
+<br>
+**How did the media present the disruption and conflict?**
 
 
 ---
 layout: false
 class: middle, inverse
 
-# METHODOLOGY AND DATA
+# DATA
 ---
 layout: true
-# MEDODOLOGY AND DATA
+# DATA
 ---
 <br>
 <br>
 <br>
+**The data collection:**
+Web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper.
+<br>
+<br>
+**The analyzed period:** 
+mid-October 2015 (*Uber entering the market*) - mid-April 2018 (*introduction of the new Law on Road Transportation*)
+<br>
+<br>
+**The sample:**
+167.600 articles in total
+370 taxi industry related news
+The final sample consisted of **165** articles containing **34.845** words
 
-Methods used and how we got the data.
-
+<br>
+.footnote[*Initial content analysis discarded PR / sponsored articles and taxi industry news unrelated with the national market (e.g., Uber's market share in the UK)]
 
 ---
 layout: false
@@ -424,82 +449,9 @@ corpus %>%
 
 
 kable(corpus) %>% # , caption = "Table X: Most frequent words (>100)"
-  kable_styling() %>%
-  scroll_box(width = "700px", height = "350px")
+  kable_styling() #%>%
+  #scroll_box(width = "700px", height = "350px")
 
-
-```
-
-
----
-layout: true
-# INSIGHTS AND TOPIC IDENTIFICATION
-
----
-<br>
-### Bigrams
-<br>
-<br>
-```{r bigram_Words, echo=FALSE,  message = FALSE, warning = FALSE}
-
-
-
-##BIGRAMI FULL
-
-bigrami <- function(dataset){
-
-dataset %>%
-  unnest_tokens(bigram, tekst, token = "ngrams", n = 2) %>%
-  count(bigram, sort = TRUE) -> taxi_bigram 
-
-
-bigrams_separated <- taxi_bigram %>%
-  separate(bigram, c("word1", "word2"), sep = " ")
-
-bigrams_filtered <- bigrams_separated %>%
-  filter(!word1 %in% stop_corpus$word) %>%
-  filter(!word2 %in% stop_corpus$word) %>%
-  filter(!grepl("\\d+", word1)) %>%
-  filter(!grepl("\\d+", word2)) %>% 
-  filter(!grepl("^[a-zA-Z]$", word1)) %>%
-  filter(!grepl("^[a-zA-Z]$", word2)) 
-
-# new bigram counts:
-bigram_counts <- bigrams_filtered %>% 
-  count(word1, word2, sort = TRUE)
-
-bigrams_united <- bigrams_filtered %>%
-  unite(bigram, word1, word2, sep = " ")
-
-bigrams_united %>%
-  arrange(desc(n)) %>%
-  mutate(ratio = (n / sum(n))*100) %>%
-  mutate(ratio = round(ratio,2)) %>%
-  mutate(ratio = paste0(ratio,"%")) %>%
-  filter(n > 25) -> UniBigram 
-
-}
-
-
-
-#bigrami(uber)
-
-
-CountBigram <- bigrami(taxi)
-
-CountBigram %>%
-    mutate(Bigram = recode(bigram,
-                         'cestovnom prometu' = "road traffic",
-                         'mora prometa' = "sea traffic",
-                         'milijuna kuna' = "milion kuna",
-                         'novog zakona' = "new law")) %>%
-  rename(N=n, Ratio = ratio) %>%
-  select(Bigram, N, Ratio) %>%
-  kable(.) %>% kable_styling() # , caption = "Most frequent bigrams (>25)"
-                         
-  
-
-#bigrami(sukob)
 
 ```
 
@@ -532,8 +484,9 @@ korpus_words %>%
 korpus_word_pairs %>%
   filter(item2 %in% rijeci_korelacija) %>% 
   group_by(item2) %>% 
-  slice(1:5) %>%
-  ungroup()  %>%
+  slice(1:8) %>%
+  ungroup()  %>% # View()
+  slice(c(-1,-3,-9,-16,-18,-19,-23,-26,-27,-25,-33,-42,-43)) %>%
   mutate(item1 = recode(item1,
                          'prijevoza' = "transport",
                          'taksisti' = "taxi drivers",
@@ -756,32 +709,7 @@ kable(sukob_corpus) %>% # ,caption = "Table X: Most frequent words (>100)"
 
 ```
 
----
-
-layout: true
-# RESULTS AND DISCUSSION
----
-<br>
-## Corpus conflict (bigrams)
-<br>
-
-```{r bigram_Words_conflict,  echo=FALSE}
-
-sukobBigr <- bigrami(sukob)
-
-
-sukobBigr %>%
-    mutate(Bigram = recode(bigram,
-                         'cestovnom prometu' = "road traffic",
-                         'mora prometa' = "sea traffic",
-                         'milijuna kuna' = "milion kuna",
-                         'novog zakona' = "new law")) %>%
-  rename(N=n, Ratio = ratio) %>%
-  select(Bigram, N, Ratio) %>%
-  kable(.) %>% kable_styling() # , caption = "Most frequent bigrams (>25)"
-
-```
-
+-
 
 ---
 
@@ -958,7 +886,7 @@ idf_sukob %>%
     group_by(sukob) %>% 
     select(sukob, word, tf_idf) %>%
     arrange(desc(tf_idf)) %>% 
-    do(head(., n = 20)) %>% 
+    do(head(., n = 5)) %>% 
     filter(!word %in% c("tremac", "davor", "nekih", "ovdje",
                         "franković", "grabar", "kitarović",
                         "trebao", "martina", "ivan", "ribić", "pilko"))   %>%
