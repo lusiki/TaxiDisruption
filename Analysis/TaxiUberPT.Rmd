@@ -327,6 +327,7 @@ layout: true
 <br>
 <br>
 <br>
+--
 
 - Disruption of the national taxi industry started in late 2015 
 <br>
@@ -357,41 +358,37 @@ layout: true
 
 
 ---
+
 layout: true
 # DATA
 ---
-<br>
-<br>
-<br>
-**Data collection**
 
+--
+
+**Data collection**
 <br>
+
 - web-scraping of the online edition of [Večernji list](https://www.vecernji.hr/) - an influential high-circulation national daily newspaper
 
-<br>
-<br>
 --
-**Analyzed period** 
 
+**Analyzed period** 
 <br>
+
 - mid-October 2015 (*Uber entering the market*) - mid-April 2018 (*introduction of the new Law on Road Transportation*)
-<br>
 <br>
 
 --
 
 **Sample**
+<br>
 
-<br>
 - 167.600 articles in total
-<br>
 - 370 taxi industry related news
-<br>
 - the final sample consisted of **165** articles containing **34.845** words
 
 <br>
 .footnote[*Initial content analysis discarded PR / sponsored articles and taxi industry news unrelated with the national market (e.g., Uber's market share in the UK)]
-
 
 ---
 layout: true
@@ -401,12 +398,14 @@ layout: true
 <br>
 <br>
 <br>
-<br>
 **Qualitative part** 
 
 – thematic analysis conducted with Atlas.ti software 
 <br>
 <br>
+<br>
+<br>
+
 --
 **Quantitative part**
 
@@ -422,7 +421,7 @@ class: middle, inverse
 ---
 
 layout: true
-#### Uber as the main disruptor of the national taxi industry
+# Uber as the main disruptor
 
 ---
 
@@ -476,7 +475,7 @@ kable(corpus) %>% # , caption = "Table X: Most frequent words (>100)"
 
 ---
 layout: true
-# Uber as the main disruptor of the national taxi industry
+# Uber as the main disruptor 
 
 ---
 
