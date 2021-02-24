@@ -893,7 +893,7 @@ sukob_words %>%
                         "prosvjed"  = "Demonstrations")) %>%
   ggplot(., aes(Datum, n / gn)) + 
   geom_point() +
-  geom_smooth() +
+  geom_smooth(se=F) +  
   facet_wrap(~ word, scales = "free_y") +
   scale_y_continuous(labels = scales::percent_format()) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
