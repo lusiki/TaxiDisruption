@@ -701,6 +701,8 @@ idf_sukob %>%
     filter(!word %in% c("tremac", "davor", "nekih", "ovdje",
                         "franković", "grabar", "kitarović",
                         "trebao", "martina", "ivan", "ribić", "pilko"))   %>%
+  ungroup() %>%
+  slice(-5) %>%
   mutate(word = recode(word,
                          'dojam' = "impression",
                          'korisne' = "usefull",
@@ -768,7 +770,7 @@ idf_sukob %>%
                          'potpredsjednik' = "vice president",
                          "spontano" = "spontaneous",
                          "taxija" = "taxi",
-                        "automobilu"  = "car" )) %>%
+                        "automobilu"  = "car" )) %>% 
     ggplot(.,aes(reorder(word,tf_idf), tf_idf, fill = sukob)) +
     geom_col(show.legend = FALSE) +
     theme(axis.text.y = element_text(angle = 30, hjust = 1, size = 8)) +
