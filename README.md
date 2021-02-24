@@ -14,7 +14,7 @@
 The main aim of this study is to explore the media's perspective of Uber's disruption of taxi industry in Croatia.
 <br>
 
-## Abstract
+## Overview
 
 <br>
 The research rationale emerges from the following setting. Uber entered the national market in late 2015. Immediately afterwards, the traditional taxi industry actors started organizing a wide range of protests against Uber claiming, in the first place, that their partner-drivers do not have the mandatory taxi license which, according the Law on Road Transportation, makes their business operations illegal. The state took the same stance; among other actions, they were issuing fines to Uber’s partner-drivers operating without the taxi license and filed a motion to a Misdemeanor court to temporarily ban Uber app in Croatia. On the other hand, Uber claimed that: a) they themselves are not in the taxi business but (solely) run the app that connects passengers with drivers who offer car rides, b) their partner-drivers are not in the taxi business but offer the service of “special form of transportation” which is regulated / allowed by the Law, and c) that the general public increasingly uses and likes their product. In the meantime, since this setting was long-term untenable for all the stakeholders, they were working together on a new regulatory framework. In the first half of 2018, the new Law on Road Transportation was introduced, the national taxi industry got (completely) liberalized, and Uber’s partner-drivers were officially labeled as taxi service providers. The predominant discourse was that the state opted for the (full) market liberalization option because it is what the public wanted. 
